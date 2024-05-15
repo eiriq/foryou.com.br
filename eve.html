@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olá Evelyn</title>
+<style>
+  body {
+    background-color: #111827; /* Cor de fundo */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white; /* Cor do texto */
+    font-family: Arial, sans-serif;
+    position: relative; /* Para posicionamento absoluto do botão */
+    transition: background-color 0.3s, color 0.3s; /* Transição suave de cor de fundo */
+    opacity: 0;
+    animation: fadeIn 1s forwards; /* Animação de fade-in */
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  h1 {
+    font-size: 36px;
+    text-align: center;
+  }
+  .hamburger {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .hamburger input {
+    display: none;
+  }
+  .hamburger svg {
+    /* O tamanho do SVG define o tamanho geral */
+    height: 3em;
+    /* Define a transição para transformar o SVG */
+    -webkit-transition: -webkit-transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: -webkit-transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1), -webkit-transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .line {
+    fill: none;
+    stroke: white;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    /* Define a transição para transformar o Stroke */
+    -webkit-transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .line-top-bottom {
+    stroke-dasharray: 12 63;
+  }
+  .hamburger input:checked + svg {
+    -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+  }
+  .hamburger input:checked + svg .line-top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+  }
+  /* Painel lateral */
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: -250px; /* Inicialmente fora da tela */
+    width: 200px;
+    height: 100vh;
+    background-color: #2d3748; /* Cor do painel */
+    border-radius: 0 10px 10px 0; /* Cantos arredondados à direita */
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    color: white; /* Cor do texto */
+  }
+  .sidebar.open {
+    left: 0; /* Mostra o painel */
+  }
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 20px 0;
+  }
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+
+  /* Botão de interruptor */
+  .toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  .toggle input {
+    display: none;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Cor quando desativado */
+    transition: .4s;
+    border-radius: 34px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #555; /* Cor do círculo quando desativado */
+    transition: .4s;
+    border-radius: 50%;
+  }
+  input:checked + .slider {
+    background-color: #a78bfa; /* Cor quando ativado */
+  }
+  input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: #111827; /* Cor do círculo quando ativado */
+  }
+
+  /* Botão de fechar */
+  .close-button {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+    position: absolute;
+    top: 20px;
+    right: 90px;
+  }
+
+  .close-button:hover {
+    color: #aaa;
+  }
+
+  /* Tema claro */
+  body.light-theme {
+    background-color: #ffffff; /* Cor de fundo branca */
+    color: #111827; /* Cor do texto */
+  }
+
+  /* Ajuste para o botão de alternância do painel lateral no tema claro */
+  body.light-theme .hamburger svg .line {
+    stroke: #000000; /* Cor do botão de alternância no tema claro */
+  }
+
+  /* Ajuste para o painel lateral no tema claro */
+  body.light-theme .sidebar {
+    background-color: #ffffff; /* Cor de fundo branca */
+    color: #000000; /* Cor do texto no tema claro */
+  }
+
+  /* Ajuste para os links do painel lateral no tema claro */
+  body.light-theme .sidebar a {
+    color: #000000; /* Cor do texto dos links no tema claro */
+  }
+</style>
+</head>
+<body>
+    <!-- Botão de alternância -->
+  <label class="hamburger">
+    <input type="checkbox" id="menuToggle">
+    <svg viewBox="0 0 32 32">
+      <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+      <path class="line" d="M7 16 27 16"></path>
+    </svg>
+  </label>
+
+  <!-- Painel lateral -->
+  <div class="sidebar" id="sidebar">
+    <a href="estudandocomeve.html">Estudar</a>
+    <a href="ellie.html">Diversão</a>
+  </div>
+
+  <!-- Botão de interruptor -->
+  <label class="toggle">
+    <input type="checkbox" id="themeToggle">
+    <span class="slider"></span>
+  </label>
+
+  <!-- Botão de fechar -->
+  <button class="close-button" onclick="window.location.href='foryou.html'">✖</button>
+
+  <h1>Olá minha irmã, seja bem-vinda :)</h1>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const themeToggle = document.getElementById('themeToggle');
+
+    menuToggle.addEventListener('change', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('light-theme'); // Alterna entre os estilos de tema claro e escuro
+    });
+  </script>
+</body>
+</html>
+
+
