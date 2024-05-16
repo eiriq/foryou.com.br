@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quem é hoje??</title>
+<style>
+  body {
+    background-color: #111827; /* Cor de fundo padrão */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white; /* Cor do texto */
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s; /* Transição suave de cor de fundo */
+  }
+  h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards; /* Animação de fade-in */
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .button {
+    background-color: #a78bfa; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 20px; /* Cantos arredondados */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Transições */
+  }
+  .button:hover {
+    background-color: #8e6ef5; /* Cor de fundo do botão ao passar o mouse */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+  }
+
+  /* Botão de alternância */
+  .toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: #555;
+    border-radius: 34px;
+  }
+
+  .toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Cor quando desativado */
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #555; /* Cor do círculo quando desativado */
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: #a78bfa; /* Cor quando ativado */
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    background-color: #111827; /* Cor do círculo quando ativado */
+  }
+
+  /* Botão de fechar */
+  .close-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+  }
+  .close-button:hover {
+    color: #aaa;
+  }
+
+  /* Estilos para tema claro */
+  body.light-theme {
+    background-color: #f5f5f5; /* Cor de fundo clara */
+    color: #333; /* Cor do texto escura */
+  }
+
+  body.light-theme .close-button {
+    color: #000000; /* Cor do X no tema claro */
+  }
+</style>
+</head>
+<body>
+  <!-- Botão de fechar -->
+  <button class="close-button" onclick="location.href='index.html'">✖</button>
+
+  <!-- Botão de alternância -->
+  <label class="toggle">
+    <input type="checkbox" id="themeToggle">
+    <span class="slider"></span>
+  </label>
+
+  <h1 class="fade-in">Quem é hoje??</h1>
+  <div class="button-container">
+    <button class="button fade-in" onclick="checkPassword('evelyn')">Evelyn</button>
+    <button class="button fade-in" onclick="checkPassword('patrick')">Patrick</button>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+
+    themeToggle.addEventListener('change', () => {
+      document.body.classList.toggle('light-theme'); // Alterna entre os estilos de tema claro e escuro
+    });
+
+    function checkPassword(name) {
+      var password = prompt("Esta sessão está bloqueada por conteúdo privado. Por favor, insira sua senha:");
+
+      if (name === 'evelyn') {
+        if (password === "Elizabeth" || password === "elizabeth") {
+          window.location.href = 'eve.html';
+        } else {
+          alert("Senha incorreta! Por segurança, o site será fechado.");
+          window.close(); // Fecha a página se a senha estiver incorreta
+        }
+      } else if (name === 'patrick') {
+        if (password === "Bianca" || password === "bianca") {
+          window.location.href = 'patrick.html';
+        } else {
+          alert("Senha incorreta! Por segurança, o site será fechado.");
+          window.close(); // Fecha a página se a senha estiver incorreta
+        }
+      } else {
+        alert("Usuário não reconhecido.");
+      }
+    }
+  </script>
+</body>
+</html>
+
