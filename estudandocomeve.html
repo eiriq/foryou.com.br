@@ -6,7 +6,8 @@
 <title>Estudando com Eve</title>
 <style>
   body {
-    background-color: #111827; /* Cor de fundo */
+    background-color: #111827;
+    color: white;
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,33 +15,183 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: white; /* Cor do texto */
     font-family: Arial, sans-serif;
     text-align: center;
-    transition: background-color 0.3s, color 0.3s; /* Transição suave de cor de fundo */
-    opacity: 0;
-    animation: fadeIn 1s forwards; /* Animação de fade-in */
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    transition: background-color 0.3s, color 0.3s;
   }
   h1 {
-    font-size: 48px;
+    font-size: 24px;
     margin: 20px 0;
   }
-  h2 {
-    font-size: 24px;
-    margin: 10px 0;
+  .button-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
   }
+  .btn-entrar {
+    background-color: #a78bfa;
+    color: white;
+    font-size: 24px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .btn-entrar:hover {
+    background-color: #8e6ef5;
+    transform: scale(1.05);
+  }
+  .login-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #111827;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.5s, background-color 0.3s, color 0.3s;
+  }
+  .login-container.show {
+    opacity: 1;
+  }
+  .form {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .form label {
+    width: 100%;
+    padding: 0.8em;
+    display: flex;
+    align-items: center;
+  }
+  .input {
+    color: white;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.8em;
+    border-bottom: 1px solid white;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .input:focus {
+    outline: none;
+    border-color: #a78bfa;
+  }
+  .input::placeholder {
+    color: #949faa;
+  }
+  .option {
+    color: white;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid white;
+    text-decoration: none;
+    display: block;
+  }
+  .option:hover {
+    background-color: #a78bfa;
+  }
+  .login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .login-header h2 {
+    margin: 0;
+  }
+  .close-login {
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.3s;
+    color: white;
+  }
+  .toggle {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: #555;
+    border-radius: 34px;
+  }
+  .toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc; /* Cor quando desativado */
+    transition: .4s;
+    border-radius: 34px;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #555; /* Cor do círculo quando desativado */
+    transition: .4s;
+    border-radius: 50%;
+  }
+  input:checked + .slider {
+    background-color: #a78bfa; /* Cor quando ativado */
+  }
+  input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: #111827; /* Cor do círculo quando ativado */
+  }
+  body.light {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  body.light .btn-entrar {
+    background-color: #a78bfa;
+    color: white;
+  }
+  body.light .login-container {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: black;
+  }
+  body.light .input {
+    color: black;
+    border-color: black;
+  }
+  body.light .input::placeholder {
+    color: #949faa;
+  }
+  body.light .option {
+    color: black;
+    border-color: black;
+  }
+  body.light .close-login {
+    color: black;
+  }
+
+  /* Botão de fechar */
   .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     cursor: pointer;
     font-size: 24px;
     color: white;
@@ -51,12 +202,110 @@
   .close-button:hover {
     color: #aaa;
   }
+
+  body.light .close-button {
+    color: black;
+  }
+  body.light .close-button:hover {
+    color: #555;
+  }
 </style>
 </head>
 <body>
-  <button class="close-button" onclick="location.href='eve.html'">✖</button>
-  <h1>Em breve...</h1>
-  <h2>É necessário contactar Evelyn Pardini para saber mais detalhes sobre</h2>
-</body>
-</html>
 
+<label class="toggle">
+    <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+    <span class="slider"></span>
+</label>
+<button class="close-button" onclick="location.href='eve.html'">✖</button>
+
+<h1>Como deseja iniciar hoje, minha irmã?</h1>
+<div class="button-container">
+    <button class="btn-entrar" onclick="goToPage('cronogramaeve.html')">Cronograma</button>
+    <button class="btn-entrar" onclick="openLogin()">Matérias</button>
+</div>
+
+<div class="login-container" id="loginContainer">
+    <div class="login-header">
+        <h2>Faça seu login</h2>
+        <span class="close-login" onclick="closeLogin()">✖</span>
+    </div>
+    <form class="form">
+        <label for="search">
+            <input class="input" type="text" placeholder="Pesquisar..." id="search" oninput="showOptions()">
+        </label>
+    </form>
+    <div id="options" class="options-container"></div>
+</div>
+
+<script>
+    var options = {
+      "Física": "fisica.html",
+      "Química": "quimica.html",
+      "Matemática": "mat.html",
+      "Biologia": "bio.html",
+      "Ciências Humanas": "ch.html",
+      "Geografia": "geo.html",
+      "Filosofia": "filo.html",
+      "Sociologia": "socio.html",
+      "Linguagens": "linguagens.html",
+      "Língua Portuguesa": "portuga.html",
+      "Educação Física e Artes": "edartes.html",
+      "Informática": "infor.html"
+    };
+
+    function showOptions() {
+      var input = document.getElementById('search').value.toLowerCase();
+      var optionsContainer = document.getElementById('options');
+      optionsContainer.innerHTML = '';
+      if (input === '') return;
+      for (var key in options) {
+        if (key.toLowerCase().startsWith(input)) {
+          var a = document.createElement('a');
+          a.textContent = key;
+          a.href = options[key];
+          a.classList.add('option');
+          optionsContainer.appendChild(a);
+        }
+      }
+    }
+
+    function goToPage(page) {
+      window.location.href = page;
+    }
+
+    function openLogin() {
+      var loginContainer = document.getElementById('loginContainer');
+      loginContainer.style.display = 'block';
+      setTimeout(function() {
+        loginContainer.classList.add('show');
+      }, 10);
+    }
+
+    function closeLogin() {
+      var loginContainer = document.getElementById('loginContainer');
+      loginContainer.classList.remove('show');
+      setTimeout(function() {
+        loginContainer.style.display = 'none';
+      }, 500);
+    }
+
+    function toggleTheme() {
+      var body = document.body;
+      var isChecked = document.getElementById('themeToggle').checked;
+      if (isChecked) {
+        body.classList.add('light');
+      } else {
+        body.classList.remove('light');
+      }
+    }
+
+    window.onclick = function(event) {
+      var loginContainer = document.getElementById('loginContainer');
+      if (event.target == loginContainer) {
+        closeLogin();
+      }
+    }
+  </script>
+</body>
+  </html>
