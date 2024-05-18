@@ -90,49 +90,50 @@
         .close-button:hover {
             color: #aaa;
         }
-        /* Botão de interruptor */
-        .toggle {
+        /* Estilos para o novo botão de interruptor */
+        .switch {
+            font-size: 17px;
             display: inline-block;
-            width: 40px; /* Adjusted width */
-            height: 20px; /* Adjusted height */
-            background-color: #555;
-            border-radius: 34px;
+            width: 3.5em;
+            height: 2em;
+            position: relative;
             margin-left: 10px; /* Adjust space between buttons */
-            position: relative; /* Adjusted for better alignment */
         }
-        .toggle input {
+        .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
         .slider {
+            --background: #28096b;
             position: absolute;
             cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #ccc; /* Cor quando desativado */
-            transition: .4s;
-            border-radius: 34px;
+            background-color: var(--background);
+            transition: .5s;
+            border-radius: 30px;
         }
         .slider:before {
             position: absolute;
             content: "";
-            height: 16px; /* Adjusted height */
-            width: 16px; /* Adjusted width */
-            left: 2px; /* Adjusted for smaller size */
-            bottom: 2px;
-            background-color: #555; /* Cor do círculo quando desativado */
-            transition: .4s;
+            height: 1.4em;
+            width: 1.4em;
             border-radius: 50%;
+            left: 10%;
+            bottom: 15%;
+            box-shadow: inset 8px -4px 0px 0px #fff000;
+            background: var(--background);
+            transition: .5s;
         }
         input:checked + .slider {
-            background-color: #a78bfa; /* Cor quando ativado */
+            background-color: #522ba7;
         }
         input:checked + .slider:before {
-            transform: translateX(20px); /* Adjusted for smaller size */
-            background-color: #111827; /* Cor do círculo quando ativado */
+            transform: translateX(100%);
+            box-shadow: inset 15px -4px 0px 15px #fff000;
         }
         /* Estilos para tema claro */
         body.light-mode {
@@ -165,7 +166,7 @@
             <h1>Cronograma de Estudos</h1>
             <div>
                 <button class="close-button" onclick="location.href='estudandocomeve.html'">✖</button>
-                <label class="toggle">
+                <label class="switch">
                     <input type="checkbox" id="themeToggle">
                     <span class="slider"></span>
                 </label>
@@ -191,7 +192,7 @@
                 <li>Matemática</li>
             </ul>
         </div>
-        <div class="day">
+        <div class=" day">
             <h2>Quinta-feira (16:30 às 17:30):</h2>
             <ul>
                 <li>Linguagens e Língua Portuguesa</li>
@@ -223,4 +224,3 @@
     </script>
 </body>
 </html>
-
