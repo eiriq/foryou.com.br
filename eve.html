@@ -106,45 +106,48 @@
   }
 
   /* Botão de interruptor */
-  .toggle {
+  .switch {
+    font-size: 17px;
     position: absolute;
     top: 20px;
     right: 70px; /* Ajustado para espaçar do botão X */
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 3.5em;
+    height: 2em;
   }
-  .toggle input {
+  .switch input {
     display: none;
   }
   .slider {
+    --background: #28096b;
     position: absolute;
     cursor: pointer;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc; /* Cor quando desativado */
-    transition: .4s;
-    border-radius: 34px;
+    background-color: var(--background);
+    transition: .5s;
+    border-radius: 30px;
   }
   .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: #555; /* Cor do círculo quando desativado */
-    transition: .4s;
+    height: 1.4em;
+    width: 1.4em;
     border-radius: 50%;
+    left: 10%;
+    bottom: 15%;
+    box-shadow: inset 8px -4px 0px 0px #fff000;
+    background: var(--background);
+    transition: .5s;
   }
   input:checked + .slider {
-    background-color: #a78bfa; /* Cor quando ativado */
+    background-color: #522ba7;
   }
   input:checked + .slider:before {
-    transform: translateX(26px);
-    background-color: #111827; /* Cor do círculo quando ativado */
+    transform: translateX(100%);
+    box-shadow: inset 15px -4px 0px 15px #fff000;
   }
 
   /* Botão de fechar */
@@ -180,7 +183,7 @@
     color: #000000; /* Cor do texto no tema claro */
   }
 
-  /* Ajuste para os links do painel lateral no tema claro */
+    /* Ajuste para os links do painel lateral no tema claro */
   body.light-theme .sidebar a {
     color: #000000; /* Cor do texto dos links no tema claro */
   }
@@ -208,7 +211,7 @@
   </div>
 
   <!-- Botão de interruptor -->
-  <label class="toggle">
+  <label class="switch">
     <input type="checkbox" id="themeToggle">
     <span class="slider"></span>
   </label>
