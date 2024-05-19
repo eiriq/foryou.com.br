@@ -267,12 +267,17 @@
       const username = usernameInput.value.toLowerCase(); // Obtém o nome de usuário em letras minúsculas
       const password = passwordInput.value;
 
-      // Verifica se o nome de usuário e a senha correspondem aos critérios
-      if ((username === 'evelyn' || username === 'eve' || username === 'patrick') && password === '1501') {
-        window.location.href = 'foryou.html'; // Redireciona para a página foryou.html
-      } else if ((username === 'patrick') && password === '1807') {
-        window.location.href = 'foryou.html'; // Redireciona para a página foryou.html
-      } else {
+      // Verifica se o nome de usuário e a senha correspondem aos critérios para Evelyn
+      if ((username === 'evelyn' || username === 'eve') && 
+          (password === 'senhaellie123' || password === 'SenhaEllie123' || password === 'senhaEllie123')) {
+        window.location.href = 'eve.html'; // Redireciona para a página eve.html
+      } 
+      // Verifica se o nome de usuário e a senha correspondem aos critérios para Patrick
+      else if (username === 'patrick' && 
+               (password === 'bianca' || password === 'Bianca')) {
+        window.location.href = 'patrick.html'; // Redireciona para a página patrick.html
+      } 
+      else {
         // Caso as credenciais estejam incorretas, destaca os campos de nome de usuário e senha em vermelho
         usernameInput.classList.add('error');
         passwordInput.classList.add('error');
