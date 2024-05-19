@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>linguagens</title>
+    <style>
+        body {
+            background-color: #111827;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #a78bfa;
+        }
+        .highlight {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            color: #a78bfa;
+            font-weight: bold;
+        }
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ffffff;
+            animation: underline 2s ease-in-out forwards;
+        }
+        body.light-mode .highlight::after {
+            background-color: #000000;
+        }
+        @keyframes underline {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        .content {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .content h2 {
+            font-size: 1.5em;
+            color: #a78bfa;
+            margin-bottom: 10px;
+        }
+        .content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .content ul li {
+            margin-bottom: 30px; /* Increased margin for more separation */
+            font-size: 1.1em;
+        }
+        .study-time {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        .study-time .highlight {
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+        .close-button:hover {
+            color: #aaa;
+        }
+        /* Botão de interruptor */
+        .toggle {
+            display: inline-block;
+            width: 3.5em;
+            height: 2em;
+            background-color: #555;
+            border-radius: 34px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            --background: #28096b;
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--background);
+            transition: .5s;
+            border-radius: 30px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 1.4em;
+            width: 1.4em;
+            border-radius: 50%;
+            left: 10%;
+            bottom: 15%;
+            box-shadow: inset 8px -4px 0px 0px #fff000;
+            background: var(--background);
+            transition: .5s;
+        }
+        input:checked + .slider {
+            background-color: #522ba7;
+        }
+        input:checked + .slider:before {
+            transform: translateX(100%);
+            box-shadow: inset 15px -4px 0px 15px #fff000;
+        }
+        /* Estilos para tema claro */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        body.light-mode .container {
+            background-color: #e5e7eb;
+        }
+        body.light-mode h1 {
+            color: #a78bfa;
+        }
+        body.light-mode .close-button {
+            color: #000000;
+        }
+        body.light-mode .day {
+            background-color: #f9fafb;
+        }
+        body.light-mode .day h2 {
+            color: #111827;
+        }
+        body.light-mode .day h2::after {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <button class="close-button" onclick="location.href='estudandocomeve.html'">✖</button>
+    <label class="toggle">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+    </label>
+    <div class="container">
+        <h1>Matéria: <span class="highlight">Informática</span></h1>
+        <div class="content">
+            <h2>Conteúdos da matéria: Linguagens (Literatura)</h2>
+            <ul>
+                <li><a href="https://brasilescola.uol.com.br/literatura/trovadorismo.htm" class="highlight">Trovadorismo</a>: Trovadorismo foi um movimento poético-musical que se desenvolveu na Europa, no período medieval. Os poemas eram escritos em forma de cantigas líricas ou satíricas.</li>
+                <li><a href="https://www.todamateria.com.br/renascimento-caracteristicas-e-contexto-historico/#:~:text=O%20Renascimento%20foi%20um%20movimento,deu%20in%C3%ADcio%20%C3%A0%20Idade%20Moderna." class="highlight">Renascimento</a>: Características e Contexto Histórico</li>
+                <li><a href="https://drive.google.com/file/d/1tPhat_FLROyMgqvtfXUbtjaSrW9Wfja9/view?usp=sharing" class="highlight">Outros...</a></li>
+            </ul>
+            <h2>Horários para estudar:</h2>
+            <div class="study-time">
+                <span>Comece a estudar no <span class="highlight">QUINTA-FEIRA</span>, a partir das 16:30, e pare às 17:30!</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('themeToggle').addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('light-mode');
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        });
+    </script>
+</body>
+</html>
+
