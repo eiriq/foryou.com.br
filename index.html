@@ -103,105 +103,6 @@
   .light-theme h1 {
     color: #111827;
   }
-
-  /* Estilos para a tela de login */
-  .login-container {
-    display: none; /* Inicialmente oculta */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    background-color: #111827; /* Cor de fundo */
-    padding: 20px;
-    border-radius: 10px; /* Cantos arredondados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
-    animation: fadeIn 0.5s ease-in-out; /* Animação de fade-in */
-  }
-
-  .light-theme .login-container {
-    background-color: #f5f5f5; /* Cor de fundo clara */
-    color: #333; /* Cor do texto escura */
-  }
-
-  .login-container.error {
-    background-color: red; /* Cor de fundo vermelha em caso de erro */
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-
-  .login-container h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .login-form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .login-form input {
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-
-  .login-form button {
-    background-color: #a78bfa;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .login-form button:hover {
-    background-color: #8e6ef5;
-  }
-
-  /* Botão de fechar (X) */
-  .close-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 24px;
-    cursor: pointer;
-    color: white;
-  }
-
-  /* Estilo do botão de fechar no tema claro */
-  .light-theme .close-btn {
-    color: #111827;
-  }
-
-  /* Estilo de erro para os campos Nome e Senha */
-  .error {
-    border-color: red;
-  }
-
-  /* Mensagem de erro */
-  .error-message {
-    color: red;
-    text-align: center;
-  }
 </style>
 </head>
 <body>
@@ -214,84 +115,36 @@
     <span class="slider"></span>
   </label>
 
-  <!-- Tela de login -->
-  <div class="login-container" id="loginContainer">
-        <span class="close-btn" id="closeBtn">&times;</span>
-    <h2>Faça seu login</h2>
-    <form class="login-form" id="loginForm">
-      <input type="text" placeholder="Nome" id="username">
-      <input type="password" placeholder="Senha" id="password">
-      <button type="submit">Entrar</button>
-    </form>
-    <p class="error-message" id="errorMessage"></p> <!-- Mensagem de erro -->
-  </div>
-
   <script>
     const themeToggle = document.getElementById('themeToggle');
-    const loginContainer = document.getElementById('loginContainer');
-    const closeBtn = document.getElementById('closeBtn');
-    const loginForm = document.getElementById('loginForm');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-    const errorMessage = document.getElementById('errorMessage');
 
     themeToggle.addEventListener('change', () => {
       document.body.classList.toggle('light-theme');
-      if (document.body.classList.contains('light-theme')) {
-        loginContainer.classList.add('light-theme');
-        closeBtn.classList.add('light-theme'); // Adicionando classe para o botão de fechar
-      } else {
-        loginContainer.classList.remove('light-theme');
-        closeBtn.classList.remove('light-theme'); // Removendo classe para o botão de fechar
-      }
     });
 
     const btnEntrar = document.querySelector('.btn-entrar');
 
     btnEntrar.addEventListener('click', () => {
-      loginContainer.style.display = 'block';
-    });
-
-    closeBtn.addEventListener('click', () => {
-      loginContainer.style.animation = 'fadeOut 0.5s';
-      setTimeout(() => {
-        loginContainer.style.display = 'none';
-        loginContainer.style.animation = '';
-      }, 500); // Tempo da animação em milissegundos
-    });
-
-    // Lógica de validação do formulário de login
-    loginForm.addEventListener('submit', (event) => {
-      event.preventDefault(); // Impede o envio do formulário
-
-      const username = usernameInput.value.toLowerCase(); // Obtém o nome de usuário em letras minúsculas
-      const password = passwordInput.value;
-
-      // Verifica se o nome de usuário e a senha correspondem aos critérios para Evelyn
-      if ((username === 'evelyn' || username === 'eve' || username === 'Evelyn') && 
-          (password === 'senhaellie123' || password === 'SenhaEllie123' || password === 'senhaEllie123')) {
-        window.location.href = 'eve.html'; // Redireciona para a página eve.html
-      } 
-      // Verifica se o nome de usuário e a senha correspondem aos critérios para Patrick
-      else if (username === 'patrick' && 
-               (password === 'bianca' || password === 'Bianca')) {
-        window.location.href = 'patrick.html'; // Redireciona para a página patrick.html
-      } 
-      else {
-        // Caso as credenciais estejam incorretas, destaca os campos de nome de usuário e senha em vermelho
-        usernameInput.classList.add('error');
-        passwordInput.classList.add('error');
-        errorMessage.textContent = 'Nome de usuário ou senha incorretos'; // Define a mensagem de erro
-        loginContainer.classList.add('error'); // Adiciona classe de erro ao contêiner
+      const username = prompt("Digite seu nome de usuário:");
+      if (username) {
+        const password = prompt("Digite sua senha:");
+        if (password) {
+          const normalizedUsername = username.toLowerCase();
+          // Verifica se o nome de usuário e a senha correspondem aos critérios para Evelyn
+          if ((normalizedUsername === 'evelyn' || normalizedUsername === 'eve') &&
+              (password === 'senhaellie123' || password === 'SenhaEllie123' || password === 'senhaEllie123')) {
+            window.location.href = 'eve.html'; // Redireciona para a página eve.html
+          } 
+          // Verifica se o nome de usuário e a senha correspondem aos critérios para Patrick
+          else if (normalizedUsername === 'patrick' && 
+                   (password === 'bianca' || password === 'Bianca')) {
+            window.location.href = 'patrick.html'; // Redireciona para a página patrick.html
+          } 
+          else {
+            alert('Nome de usuário ou senha incorretos');
+          }
+        }
       }
-    });
-
-    // Remove a classe de erro quando o usuário começa a digitar no campo
-    usernameInput.addEventListener('input', () => {
-      usernameInput.classList.remove('error');
-      passwordInput.classList.remove('error');
-      errorMessage.textContent = ''; // Limpa a mensagem de erro
-      loginContainer.classList.remove('error'); // Remove classe de erro do contêiner
     });
   </script>
 </body>
