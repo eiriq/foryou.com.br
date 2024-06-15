@@ -141,6 +141,29 @@
         footer a:hover {
             color: #aaaaaa;
         }
+        .notification-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #65b4b5;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+        .notification-button:hover {
+            background-color: #519e9e;
+        }
+        .notification-button img {
+            width: 24px;
+            height: 24px;
+        }
         @media (max-width: 600px) {
             .search-box {
                 margin-right: 10px; /* Espaço reduzido à direita */
@@ -158,7 +181,7 @@
 <body>
     <header>
         <div class="logo">
-            <h1>Honorino... </h1>
+            <h1>Honorino Archives</h1>
         </div>
         <div class="search-box">
             <input
@@ -199,6 +222,10 @@
         <a href="politics.html">Políticas</a>
     </footer>
 
+    <div class="notification-button" onclick="location.href='logs.html'">
+        <img src="notification-icon.png" alt="Notificação">
+    </div>
+
     <script>
         const moviesAndSeries = [
             { title: 'Love Lies Bleeding', url: 'llb.html' },
@@ -231,4 +258,3 @@
     </script>
 </body>
 </html>
-
