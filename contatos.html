@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos - Honorino Archives</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #1e2428;
+            color: #ffffff;
+        }
+        header, footer {
+            background-color: #141a1d;
+            padding: 10px 20px;
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            border-radius: 10px; /* Cantos arredondados */
+            z-index: 1000;
+        }
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+        .logo {
+            position: absolute;
+            left: 20px;
+        }
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 80px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px; /* Espaço do topo */
+        }
+        .form-container {
+            max-width: 600px;
+            background-color: #222630;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        .form-container h1 {
+            color: #64b5b5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            color: #64b5b5;
+        }
+        .form-container input[type="text"], .form-container textarea {
+            width: calc(100% - 28px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #2b3040;
+            color: white;
+        }
+        .form-container input[type="submit"] {
+            background-color: #64b5b5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #596a95;
+        }
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #141a1d;
+            padding: 10px 20px;
+            border-radius: 10px; /* Cantos arredondados */
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            z-index: 999;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #aaaaaa;
+        }
+        @media (max-width: 600px) {
+            .search-box {
+                margin-right: 10px; /* Espaço reduzido à direita */
+            }
+            .search-box input {
+                width: 140px; /* Tamanho reduzido */
+                padding: 8px 12px; /* Tamanho reduzido */
+            }
+            .search-results {
+                top: calc(100% + 20px); /* Ajuste para dispositivos móveis */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1>Honorino Archives</h1>
+            </a>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="form-container">
+            <h1>Envie para mim as séries e filmes que vocês querem ver :)</h1>
+            <form action="https://formspree.io/f/xayrrbew" method="POST">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" placeholder="Insira seu nome para mim..." required>
+                
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" rows="5" placeholder="Coloque o nome do filme/série..." required></textarea>
+                
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <a href="contatos.html">Contato</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="politics.html">Políticas</a>
+    </footer>
+</body>
+</html>
+

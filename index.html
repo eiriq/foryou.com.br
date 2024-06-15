@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honorino Archives</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #1e2428;
+            color: #ffffff;
+        }
+        header, footer {
+            background-color: #141a1d;
+            padding: 10px 20px;
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            border-radius: 10px; /* Cantos arredondados */
+            z-index: 1000;
+        }
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+        .logo {
+            position: absolute;
+            left: 20px;
+        }
+        .search-box {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            margin-left: auto; /* Movendo para a direita */
+            margin-right: 20px; /* Espaço à direita */
+            border: 2px solid transparent; /* Adicionando contorno transparente inicial */
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        .search-box input {
+            background-color: #222630;
+            padding: 10px 14px; /* Tamanho reduzido */
+            outline: none;
+            width: 160px; /* Tamanho reduzido */
+            color: white;
+            border-radius: 8px;
+            border: 2px solid #2B3040;
+            transition: border-color 0.1s;
+        }
+        .search-box input:focus {
+            border-color: #ffffff; /* Mudando a cor do contorno ao focar */
+        }
+        .search-results {
+            position: absolute;
+            top: calc(100% + 10px); /* Posicionando abaixo da barra de pesquisa */
+            width: 100%;
+            background-color: #222630;
+            border-radius: 8px;
+            border: 1px solid #ffffff; /* Adicionando contorno branco */
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+        }
+        .search-results a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #2B3040;
+            transition: background-color 0.3s ease;
+            border: 1px solid #ffffff; /* Adicionando contorno branco */
+        }
+        .search-results a:hover {
+            background-color: #1e2428;
+        }
+        .content {
+            padding: 80px 20px 60px;
+        }
+        .highlights, .categories {
+            margin-bottom: 40px;
+        }
+        .highlights h2, .categories h2 {
+            margin-bottom: 20px;
+        }
+        .highlight-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-gap: 10px;
+        }
+        .highlight-items img {
+            width: 100%;
+            transition: transform 0.3s ease;
+            cursor: pointer; /* Cursor ao passar por cima para indicar clicabilidade */
+        }
+        .highlight-items img:hover {
+            transform: translateY(-10px);
+        }
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .category-buttons a {
+            padding: 15px 30px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            background-color: #64b5b5;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+            text-decoration: none; /* Removendo decoração de texto */
+            display: inline-block; /* Para ajustar tamanho ao conteúdo */
+            text-align: center; /* Alinhando o texto ao centro */
+        }
+        .category-buttons a:hover {
+            background-color: #1e2428;
+        }
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #141a1d;
+            padding: 10px 20px;
+            border-radius: 10px; /* Cantos arredondados */
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            z-index: 999;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #aaaaaa;
+        }
+        @media (max-width: 600px) {
+            .search-box {
+                margin-right: 10px; /* Espaço reduzido à direita */
+            }
+            .search-box input {
+                width: 140px; /* Tamanho reduzido */
+                padding: 8px 12px; /* Tamanho reduzido */
+            }
+            .search-results {
+                top: calc(100% + 20px); /* Ajuste para dispositivos móveis */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Honorino... </h1>
+        </div>
+        <div class="search-box">
+            <input
+              class="bg-[#222630] px-4 py-3 outline-none w-[160px] text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040]"
+              name="text"
+              placeholder="Pesquise aqui..."
+              type="text"
+              id="search-input"
+              oninput="showResults()"
+            />
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="highlights">
+            <h2>Destaques</h2>
+            <div class="highlight-items">
+                <a href="llb.html"><img src="movie1.jpg" alt="Movie 1"></a>
+                <a href="invencible.html"><img src="movie2.jpg" alt="Movie 2"></a>
+                <a href="toh.html"><img src="movie3.jpg" alt="Movie 3"></a>
+                <a href="supernatural.html"><img src="movie4.jpg" alt="Movie 4"></a>
+            </div>
+        </div>
+
+        <div class="categories">
+            <h2>Categorias</h2>
+            <div class="category-buttons">
+                <a href="filmes.html">Filmes</a>
+                <a href="series.html">Séries</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="contatos.html">Contato</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="politics.html">Políticas</a>
+    </footer>
+
+    <script>
+        const moviesAndSeries = [
+            { title: 'Love Lies Bleeding', url: 'llb.html' },
+            { title: 'Invencible', url: 'invencible.html' },
+            { title: 'Supernatural', url: 'supernatural.html' },
+            { title: 'O Jogo da Morte', url: 'morte.html' },
+            { title: 'A mulher forte', url: 'forte.html' },
+            { title: 'Passivonas', url: 'passivonas.html' },
+            { title: 'The Owl House', url: 'toh.html' }
+        ];
+
+        function showResults() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+            if (input) {
+                const filteredResults = moviesAndSeries.filter(item => item.title.toLowerCase().includes(input));
+                filteredResults.forEach(result => {
+                    const resultElement = document.createElement('a');
+                    resultElement.href = result.url;
+                    resultElement.textContent = result.title;
+                    resultElement.style.border = '1px solid #ffffff'; // Adicionando contorno branco
+                    resultsContainer.appendChild(resultElement);
+                });
+                resultsContainer.style.display = filteredResults.length ? 'flex' : 'none';
+            } else {
+                resultsContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+

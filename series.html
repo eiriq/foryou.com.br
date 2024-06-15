@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Séries - Honorino Archives</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #1e2428;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        header, footer {
+            background-color: #141a1d;
+            padding: 10px 20px;
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            border-radius: 10px; /* Cantos arredondados */
+            z-index: 1000;
+        }
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+        .logo {
+            position: absolute;
+            left: 20px;
+        }
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo a:hover {
+            text-decoration: underline;
+        }
+        .search-box {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            margin-left: auto; /* Movendo para a direita */
+            margin-right: 20px; /* Espaço à direita */
+            border: 2px solid transparent; /* Adicionando contorno transparente inicial */
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        .search-box input {
+            background-color: #222630;
+            padding: 10px 14px; /* Tamanho reduzido */
+            outline: none;
+            width: 160px; /* Tamanho reduzido */
+            color: white;
+            border-radius: 8px;
+            border: 2px solid #2B3040;
+            transition: border-color 0.1s;
+        }
+        .search-box input:focus {
+            border-color: #ffffff; /* Mudando a cor do contorno ao focar */
+        }
+        .search-results {
+            position: absolute;
+            top: calc(100% + 10px); /* Posicionando abaixo da barra de pesquisa */
+            width: 100%;
+            background-color: #222630;
+            border-radius: 8px;
+            border: 1px solid #ffffff; /* Adicionando contorno branco */
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+        }
+        .search-results a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #2B3040;
+            transition: background-color 0.3s ease;
+            border: 1px solid #ffffff; /* Adicionando contorno branco */
+        }
+        .search-results a:hover {
+            background-color: #1e2428;
+        }
+        .content {
+            padding: 80px 20px 60px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .content h2 {
+            color: #64b5b5;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.2rem; /* Tamanho do título aumentado */
+        }
+        .highlight-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-gap: 10px;
+        }
+        .highlight-items img {
+            width: 100%;
+            transition: transform 0.3s ease;
+            cursor: pointer; /* Cursor ao passar por cima para indicar clicabilidade */
+        }
+        .highlight-items img:hover {
+            transform: translateY(-10px);
+        }
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #141a1d;
+            padding: 10px 20px;
+            border-radius: 10px; /* Cantos arredondados */
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            z-index: 999;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #aaaaaa;
+        }
+        @media (max-width: 600px) {
+            .search-box {
+                margin-right: 10px; /* Espaço reduzido à direita */
+            }
+            .search-box input {
+                width: 140px; /* Tamanho reduzido */
+                padding: 8px 12px; /* Tamanho reduzido */
+            }
+            .search-results {
+                top: calc(100% + 20px); /* Ajuste para dispositivos móveis */
+            }
+            .content h2 {
+                font-size: 1.8rem; /* Tamanho do título aumentado para dispositivos móveis */
+            }
+            .highlight-items img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1>Honorino... </h1>
+            </a>
+        </div>
+        <div class="search-box">
+            <input
+              class="bg-[#222630] px-4 py-3 outline-none w-[160px] text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040]"
+              name="text"
+              placeholder="Pesquise aqui..."
+              type="text"
+              id="search-input"
+              oninput="showResults()"
+            />
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Séries:</h2>
+        <div class="highlight-items">
+            <a href="toh.html"><img src="serie1.jpg" alt="The Owl House"></a>
+            <a href="bang.html"><img src="serie5.jpg" alt="Bang"></a>
+            <a href="morte.html"><img src="serie4.jpg" alt="O Jogo da Morte"></a>
+            <a href="supernatural.html"><img src="serie2.jpg" alt="Supernatural"></a>
+            <a href="invencible.html"><img src="serie3.jpg" alt="Invencible"></a>
+        </div>
+    </div>
+
+    <footer>
+        <a href="contatos.html">Contato</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="politics.html">Políticas</a>
+    </footer>
+
+    <script>
+        const series = [
+            { title: 'The Owl House', url: 'toh.html' },
+            { title: 'Bang', url: 'bang.html' },
+            { title: 'O Jogo da Morte', url: 'morte.html' },
+            { title: 'Supernatural', url: 'supernatural.html' },
+            { title: 'Invencible', url: 'invencible.html' }
+        ];
+
+        function showResults() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+            if (input) {
+                const filteredResults = series.filter(serie => serie.title.toLowerCase().includes(input));
+                filteredResults.forEach(result => {
+                    const resultElement = document.createElement('a');
+                    resultElement.href = result.url;
+                    resultElement.textContent = result.title;
+                    resultElement.style.border = '1px solid #ffffff'; // Adicionando contorno branco
+                    resultsContainer.appendChild(resultElement);
+                });
+                resultsContainer.style.display = filteredResults.length ? 'flex' : 'none';
+            } else {
+                resultsContainer.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+

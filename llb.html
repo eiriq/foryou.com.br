@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Lies Bleeding - Honorino Archives</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #1e2428;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        header, footer {
+            background-color: #141a1d;
+            padding: 10px 20px;
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            border-radius: 10px; /* Cantos arredondados */
+            z-index: 1000;
+        }
+        header {
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+        .logo {
+            position: absolute;
+            left: 20px;
+        }
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo a:hover {
+            text-decoration: underline;
+        }
+        .search-box {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            margin-left: auto;
+            margin-right: 20px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        .search-box input {
+            background-color: #222630;
+            padding: 10px 14px;
+            outline: none;
+            width: 160px;
+            color: white;
+            border-radius: 8px;
+            border: 2px solid #2B3040;
+            transition: border-color 0.1s;
+        }
+        .search-box input:focus {
+            border-color: #ffffff;
+        }
+        .search-results {
+            position: absolute;
+            top: calc(100% + 10px);
+            width: 100%;
+            background-color: #222630;
+            border-radius: 8px;
+            border: 1px solid #ffffff;
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+        }
+        .search-results a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #2B3040;
+            transition: background-color 0.3s ease;
+            border: 1px solid #ffffff;
+        }
+        .search-results a:hover {
+            background-color: #1e2428;
+        }
+        .content {
+            padding: 80px 20px 60px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .content h2 {
+            color: #64b5b5;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.2rem;
+        }
+        .content p {
+            text-align: justify;
+            line-height: 1.8;
+            color: #dddddd;
+            font-size: 1.2rem;
+        }
+        .content p strong {
+            color: #64b5b5;
+            font-weight: 700;
+        }
+        .content p em {
+            font-style: italic;
+            color: #a3c6c4;
+        }
+        .movie-poster {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .movie-poster img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+        }
+        .video-player {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .video-player button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #64b5b5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .video-player button:hover {
+            background-color: #519e9e;
+        }
+        footer {
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #141a1d;
+            padding: 10px 20px;
+            border-radius: 10px;
+            position: fixed;
+            width: calc(100% - 40px);
+            margin: 10px;
+            z-index: 999;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #aaaaaa;
+        }
+        @media (max-width: 600px) {
+            .search-box {
+                margin-right: 10px;
+            }
+            .search-box input {
+                width: 140px;
+                padding: 8px 12px;
+            }
+            .search-results {
+                top: calc(100% + 20px);
+            }
+            .content h2 {
+                font-size: 1.8rem;
+            }
+            .content p {
+                font-size: 1.1rem;
+            }
+            .video-player button {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <h1>Honorino... </h1>
+            </a>
+        </div>
+        <div class="search-box">
+            <input
+              class="bg-[#222630] px-4 py-3 outline-none w-[160px] text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040]"
+              name="text"
+              placeholder="Pesquise aqui..."
+              type="text"
+              id="search-input"
+              oninput="showResults()"
+            />
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </header>
+
+    <div class="content">
+        <h2>Love Lies Bleeding: O Amor Sangra</h2>
+        <div class="movie-poster">
+            <img src="llb.jpg" alt="Love Lies Bleeding Poster">
+        </div>
+        <p><strong>Sinopse:</strong> Love Lies Bleeding é um filme de suspense que segue a história de uma jovem que se envolve em um perigoso jogo de segredos e mentiras. À medida que ela se aprofunda na trama, descobre que nada é o que parece e deve lutar pela sua sobrevivência.</p>
+        <p><strong>Diretor:</strong> John Doe</p>
+        <p><strong>Elenco:</strong> Jane Smith, John Doe, Mary Johnson</p>
+        <p><strong>Duração:</strong> 120 minutos</p>
+        <p><strong>Ano:</strong> 2023</p>
+        <p><strong>Classificação Indicativa:</strong> 16 anos</p>
+        <div class="video-player">
+            <button onclick="showPlayerAlert()">Player 1</button>
+        </div>
+    </div>
+
+    <footer>
+        <a href="contatos.html">Contato</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="politics.html">Políticas</a>
+    </footer>
+
+    <script>
+        const moviesAndSeries = [
+            { title: 'Love Lies Bleeding', url: 'llb.html' },
+            { title: 'Invencible', url: 'invencible.html' },
+            { title: 'Supernatural', url: 'supernatural.html' },
+            { title: 'O Jogo da Morte', url: 'morte.html' },
+            { title: 'A mulher forte', url: 'forte.html' },
+            { title: 'Passivonas', url: 'passivonas.html' },
+            { title: 'The Owl House', url: 'toh.html' }
+        ];
+
+        function showResults() {
+            const input = document.getElementById('search-input').value.toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+            if (input) {
+                const filteredResults = moviesAndSeries.filter(item => item.title.toLowerCase().startsWith(input));
+                filteredResults.forEach(result => {
+                    const resultElement = document.createElement('a');
+                    resultElement.href = result.url;
+                    resultElement.textContent = result.title;
+                    resultElement.style.border = '1px solid #ffffff';
+                    resultsContainer.appendChild(resultElement);
+                });
+                resultsContainer.style.display = filteredResults.length ? 'flex' : 'none';
+            } else {
+                resultsContainer.style.display = 'none';
+            }
+        }
+
+        function showPlayerAlert() {
+            if (confirm("Olá! O filme escolhido está em processo de transição dos cinemas e por isso você assistirá LEGENDADO, e em um site hospedado fora de nossa nuvem pessoal. Mas não se preocupe, a segurança do site é garantida por mim mesmo:).. Bom filme!")) {
+                window.location.href = "https://topflix.vc/filmes/assistir-online-love-lies-bleeding-o-amor-sangra/";
+            }
+        }
+    </script>
+</body>
+</html>
+
