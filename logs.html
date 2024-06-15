@@ -85,6 +85,12 @@
             font-size: 20px;
             text-decoration: none;
         }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
@@ -98,24 +104,28 @@
     <a href="index.html" class="close-button">&times;</a>
 
     <div id="updates" class="content active">
-        <div class="updates">
-            <h3>14 de junho de 2024</h3>
-            <p>Adição dos filmes e séries ao site principal, tornando disponível para assistir todos os filmes e séries catalogados no site.</p>
-        </div>
-        <div class="updates">
-            <h3>15 de junho de 2024</h3>
-            <p>Adicionado a opção "Novidades" ao site, trazendo as principais novidades e informações sobre o funcionamento contínuo do site.</p>
+        <div class="grid-container">
+            <div class="updates">
+                <h3>14 de junho de 2024</h3>
+                <p>Adição dos filmes e séries ao site principal, tornando disponível para assistir todos os filmes e séries catalogados no site.</p>
+            </div>
+            <div class="updates">
+                <h3>15 de junho de 2024</h3>
+                <p>Adicionado a opção "Novidades" ao site, trazendo as principais novidades e informações sobre o funcionamento contínuo do site.</p>
+            </div>
         </div>
     </div>
 
     <div id="functioning" class="content">
-        <div class="functioning">
-            <h3><img src="iconrede.png" alt="RedeCanais"> RedeCanais</h3>
-            <p>O site Honorino Archives, com foco em filmes e séries de maneira gratuita, está indexado a sites com nuvens próprias, pessoais e seguras.</p>
-        </div>
-        <div class="functioning">
-            <h3><img src="icondorama.png" alt="DoramasOnline"> DoramasOnline</h3>
-            <p>Os principais sites que indexamos são seguros e confiáveis, garantindo uma experiência de qualidade.</p>
+        <div class="grid-container">
+            <div class="functioning">
+                <h3><img src="iconrede.png" alt="RedeCanais"> RedeCanais</h3>
+                <p>O site Honorino Archives, com foco em filmes e séries de maneira gratuita, está indexado a sites com nuvens próprias, pessoais e seguras.</p>
+            </div>
+            <div class="functioning">
+                <h3><img src="icondorama.png" alt="DoramasOnline"> DoramasOnline</h3>
+                <p>Os principais sites que indexamos são seguros e confiáveis, garantindo uma experiência de qualidade.</p>
+            </div>
         </div>
     </div>
 
@@ -138,4 +148,3 @@
     </script>
 </body>
 </html>
-
