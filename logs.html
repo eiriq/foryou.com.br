@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs - Honorino Archives</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #1e2428;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            background-color: #141a1d;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 2px solid #64b5b5;
+        }
+        .tabs {
+            display: flex;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #141a1d;
+            color: #ffffff;
+            border: none;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+        .tab:hover {
+            background-color: #1e2428;
+        }
+        .tab.active {
+            background-color: #64b5b5;
+            color: #ffffff;
+        }
+        .content {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+        .updates, .functioning {
+            margin: 20px 0;
+        }
+        .updates h3, .functioning h3 {
+            margin-bottom: 10px;
+            color: #65b4b5;
+        }
+        .updates p, .functioning p {
+            margin: 5px 0;
+        }
+        .functioning img {
+            width: 20px;
+            height: auto;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .close-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: #65b4b5;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('updates')">Atualizações</button>
+            <button class="tab" onclick="showTab('functioning')">Funcionamento</button>
+        </div>
+    </header>
+
+    <a href="index.html" class="close-button">&times;</a>
+
+    <div id="updates" class="content active">
+        <div class="updates">
+            <h3>14 de junho de 2024</h3>
+            <p>Adição dos filmes e séries ao site principal, tornando disponível para assistir todos os filmes e séries catalogados no site.</p>
+        </div>
+        <div class="updates">
+            <h3>15 de junho de 2024</h3>
+            <p>Adicionado a opção "Novidades" ao site, trazendo as principais novidades e informações sobre o funcionamento contínuo do site.</p>
+        </div>
+    </div>
+
+    <div id="functioning" class="content">
+        <div class="functioning">
+            <h3><img src="iconrede.png" alt="RedeCanais"> RedeCanais</h3>
+            <p>O site Honorino Archives, com foco em filmes e séries de maneira gratuita, está indexado a sites com nuvens próprias, pessoais e seguras.</p>
+        </div>
+        <div class="functioning">
+            <h3><img src="icondorama.png" alt="DoramasOnline"> DoramasOnline</h3>
+            <p>Os principais sites que indexamos são seguros e confiáveis, garantindo uma experiência de qualidade.</p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.content');
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
