@@ -143,7 +143,7 @@
         }
         .notification-button {
             position: fixed;
-            bottom: 20px;
+            bottom: 60px; /* Movido para cima */
             right: 20px;
             background-color: #65b4b5;
             width: 50px;
@@ -154,8 +154,11 @@
             align-items: center;
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.1s ease; /* Adicionada transição para transformação */
             z-index: 1000;
+        }
+        .notification-button:active {
+            transform: scale(0.9); /* Efeito de clique */
         }
         .notification-button:hover {
             background-color: #519e9e;
@@ -181,7 +184,7 @@
 <body>
     <header>
         <div class="logo">
-            <h1>Honorino... </h1>
+            <h1>Honorino Archives</h1>
         </div>
         <div class="search-box">
             <input
